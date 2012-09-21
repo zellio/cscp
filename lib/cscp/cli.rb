@@ -46,7 +46,10 @@ module CSCP
           exit
         end
         o.on_tail "--version", "Display the version number" do
-          puts "0.0.1" or exit
+          v_file = File.join(File.dirname(__FILE__), '../..', 'VERSION')
+          @options.version = File.exists?(v_file) ? File.read(v_file) : ""
+          puts @options.version
+          exit
         end
 
         o.separator ""

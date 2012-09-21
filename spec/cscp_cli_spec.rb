@@ -141,7 +141,11 @@ describe CSCP::CLI do
         -> { @cli.parse [ "--version" ] }.should raise_error SystemExit
       end
       it "should return the current version of the program" do
-        # FIXME
+        -> {
+          @cli.parse [ "--version" ]
+          v_file = File.join(File.dirname(__FILE__), '..', 'VERSION')
+          @cli.options.version.should eql File.exists?(v_file) ? File.read(v_file) : ""
+        }.should raise_error SystemExit
       end
     end
 
