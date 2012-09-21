@@ -35,11 +35,11 @@ module CSCP
     def pull
       hosts.each_with_index do |host, index|
         host.connect and host.pull source, (@formatter % {
-          :source   => @source,
-          :target   => @target,
-          :index    => index,
-          :hostname => host.hostname
-        })
+                                              :source   => @source,
+                                              :target   => @target,
+                                              :index    => index,
+                                              :hostname => host.hostname
+                                            })
       end
     end
   end

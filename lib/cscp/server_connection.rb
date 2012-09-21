@@ -19,7 +19,9 @@ module CSCP
     end
 
     def connect
-      @conn = Net::SSH.start( @hostname, @username, :password => @password )
+      @conn = Net::SSH.start( @hostname, @username,
+                              { :password => @password,
+                                :port     => @port } )
       @scp = @conn.scp
     end
 

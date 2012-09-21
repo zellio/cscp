@@ -10,6 +10,12 @@ describe CSCP::CLI do
     $stdout.stub!(:write)
   end
 
+  describe "#help_message" do
+    it "should return @parser.to_s" do
+      @cli.help_message.should eql @cli.parser.to_s
+    end
+  end
+
   describe "#options" do
     it "should be an OpenStruct" do
       @cli.options.should be_an_instance_of OpenStruct
@@ -35,6 +41,17 @@ describe CSCP::CLI do
   end
 
   describe "#parse" do
+    it "should should throw OptionParser::InvalidArgument on no args" do
+        -> {
+          @cli.parse []
+        }.should raise_error OptionParser::InvalidArgument
+    end
+    it "should should throw OptionParser::InvalidOption on bad args" do
+      -> {
+        @cli.parse [ "--bad" ]
+      }.should raise_error OptionParser::InvalidOption
+    end
+
     describe "#command" do
       it "should be an optional flag with a required argument" do
         @cli.parse [ "--command=PUSH", "s", "d" ]

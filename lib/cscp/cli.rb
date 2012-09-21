@@ -42,7 +42,8 @@ module CSCP
         o.separator ""
         o.separator "General options:"
         o.on_tail "-h", "--help", "Display this help message." do
-          puts o or exit
+          puts help_message
+          exit
         end
         o.on_tail "--version", "Display the version number" do
           puts "0.0.1" or exit
@@ -64,6 +65,10 @@ module CSCP
       @options.source, @options.target = @parser.parse! args
       raise OptionParser::InvalidArgument.new unless
         @options.source and @options.target
+    end
+
+    def help_message
+      @parser.to_s
     end
   end
 end

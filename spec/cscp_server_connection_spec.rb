@@ -56,7 +56,7 @@ describe CSCP::ServerConnection do
   describe "#connect" do
     it "should connect to @hostname on @port using @password and @username" do
       Net::SSH.should_receive(:start).with("localhost", "zellio",
-                                           :password => "")
+                                           :password => "", :port => 22)
       ssh_connection.should_receive(:scp)
       @sc.connect
     end
@@ -65,7 +65,7 @@ describe CSCP::ServerConnection do
   describe "#disconnect" do
     before :each do
       Net::SSH.should_receive(:start).with("localhost", "zellio",
-                                           :password => "")
+                                           :password => "", :port => 22)
       ssh_connection.should_receive(:scp)
       @sc.connect
     end

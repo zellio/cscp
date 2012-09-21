@@ -7,7 +7,12 @@ module CSCP
   class Application
     def self.run *args
       cli = CSCP::CLI.new
-      cli.parse args
+      begin
+        cli.parse args
+      rescue
+        puts cli.help_message
+        exit
+      end
       cli.get_credentials
 
       opts = cli.options
