@@ -41,11 +41,11 @@ module CSCP
 
         o.separator ""
         o.separator "General options:"
-        o.on_tail "-h", "--help", "Display this help message." do
+        o.on "-h", "--help", "Display this help message." do
           puts help_message
           exit
         end
-        o.on_tail "--version", "Display the version number" do
+        o.on "--version", "Display the version number" do
           v_file = File.join(File.dirname(__FILE__), '../..', 'VERSION')
           @options.version = File.exists?(v_file) ? File.read(v_file) : ""
           puts @options.version
