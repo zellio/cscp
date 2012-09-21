@@ -18,7 +18,7 @@ module CSCP
 
     def build_parser
       @parser = OptionParser.new do |o|
-        o.banner = "cscp v0.0.1 - cluster secure copy (remote file copy program)."
+        o.banner = "cscp - cluster secure copy (remote file copy program)."
         o.separator ""
         o.separator "Usage: cscp [OPTION]... SOURCE DEST"
         o.separator ""
