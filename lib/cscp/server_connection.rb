@@ -32,7 +32,7 @@ module CSCP
       raise Exception, "Not Connected" unless @conn
       @scp.download!( source, target ) do |ch, name, received, total|
         percent = format("%.2f", received.to_f / total.to_f * 100) + "%"
-        print "\rpull: #{@hostname}:#{@source} > #{target} - #{received}/#{total} (#{percent})"
+        print "\rpull: #{@hostname}:#{source} > #{target} - #{received}/#{total} (#{percent})"
         $stdout.flush
       end
       puts ""
