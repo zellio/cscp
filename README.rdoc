@@ -1,19 +1,59 @@
+
 = cscp
 
-Description goes here.
+cluster secure copy or cscp, is a ruby program designed to facilitate moving
+files off of and onto clustered environments. It uses Net::SSH and Net::SCP to
+do the heavy lifting and is fairly straight forward to use.
+
+Usage: cscp [OPTION]... SOURCE DEST
+
+Specific options:
+    -c, --command=(PUSH|PULL)        Direction of file transfer
+    -l, --hostlist=HOST1[,HOST2...]  List of foriegn hosts
+    -f, --format=STRING              Format string for local filenames
+    -u, --user=USERNAME              Set the global login name.
+
+    General options:
+    -h, --help                       Display this help message.
+        --version                    Display the version number
+
+Host-names for -l are in the expected format of [username@]host[:port]. With
+username overriding both the default value of the current user and the provided
+value for the -u flag.
+
+Due to the fact that you will be pulling many files off of a cluster to the same
+place on a local machine the --format option is used to give the files unique
+names. It is up to you to ensure their uniqueness.
+
+The only real "gotcha" is the --format option. This takes a valid ruby format
+string which is passed into a "format_string % Hash" statement. Valid keys for
+the hash as of now are :source, :target, :index, and :host. These are subject to
+change in the future but rarely will I remove ones that have made it into
+production.
 
 == Contributing to cscp
- 
-* Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet.
-* Check out the issue tracker to make sure someone already hasn't requested it and/or contributed it.
+
+* Check out the latest master to make sure the feature hasn't been implemented
+  or the bug hasn't been fixed yet.
+
+* Check out the issue tracker to make sure someone already hasn't requested it
+  and/or contributed it.
+
 * Fork the project.
+
 * Start a feature/bugfix branch.
+
 * Commit and push until you are happy with your contribution.
-* Make sure to add tests for it. This is important so I don't break it in a future version unintentionally.
-* Please try not to mess with the Rakefile, version, or history. If you want to have your own version, or is otherwise necessary, that is fine, but please isolate to its own commit so I can cherry-pick around it.
+
+* Make sure to add tests for it. This is important so I don't break it in a
+  future version unintentionally.
+
+* Please try not to mess with the Rakefile, version, or history. If you want to
+  have your own version, or is otherwise necessary, that is fine, but please
+  isolate to its own commit so I can cherry-pick around it.
+
 
 == Copyright
 
-Copyright (c) 2012 Zachary Elliott. See LICENSE.txt for
-further details.
-
+Copyright (c) 2012 Zachary Elliott.
+See LICENSE.txt for further details.
