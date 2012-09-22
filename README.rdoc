@@ -5,17 +5,17 @@ cluster secure copy or cscp, is a ruby program designed to facilitate moving
 files off of and onto clustered environments. It uses Net::SSH and Net::SCP to
 do the heavy lifting and is fairly straight forward to use.
 
-Usage: cscp [OPTION]... SOURCE DEST
+    Usage: cscp [OPTION]... SOURCE DEST
 
-Specific options:
-    -c, --command=(PUSH|PULL)        Direction of file transfer
-    -l, --hostlist=HOST1[,HOST2...]  List of foriegn hosts
-    -f, --format=STRING              Format string for local filenames
-    -u, --user=USERNAME              Set the global login name.
-
-    General options:
-    -h, --help                       Display this help message.
-        --version                    Display the version number
+    Specific options:
+        -c, --command=(PUSH|PULL)        Direction of file transfer
+        -l, --hostlist=HOST1[,HOST2...]  List of foriegn hosts
+        -f, --format=STRING              Format string for local filenames
+        -u, --user=USERNAME              Set the global login name.
+    
+        General options:
+        -h, --help                       Display this help message.
+            --version                    Display the version number
 
 Host-names for -l are in the expected format of [username@]host[:port]. With
 username overriding both the default value of the current user and the provided
